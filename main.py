@@ -13,8 +13,7 @@ def root(conversation_id: int, question: str):
     template = getTemplate()
     prompt = getPrompt(template)
 
-    llm = ChatOpenAI(openai_api_key = "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")
-    print("Id ", conversation_id, " ", question)
+    llm = ChatOpenAI(openai_api_key = "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")
     chain = prompt | llm
-    capital =  chain.invoke({"input": "what is the capital of bangladesh?"})
-    return {"hello": capital}
+    ans =  chain.invoke({"input": question})
+    return {conversation_id: ans.content}
